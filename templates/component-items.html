@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Component Items</title>
+  </head>
+  <body>
+    <h1>This page will show all items for a specific component</h1>
+    {% for item in component_item %}
+      <h1>{{item.name}}</h1>
+      <h1>{{item.component_id}}</h1>
+    {% endfor%}
+  </body>
+</html>

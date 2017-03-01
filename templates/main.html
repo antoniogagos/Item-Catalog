@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PC components</title>
+  </head>
+  <body>
+    <h1>This page will show all PC components</h1>
+    {% for component in components %}
+      <a href="{{url_for('showComponentItems', component=component.name)}}">
+      <h1>{{component.name}}</h1>
+      </a>
+    {% endfor %}
+  </body>
+</html>
