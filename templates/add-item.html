@@ -6,5 +6,19 @@
   </head>
   <body>
     <h1>This page will be for adding new items</h1>
+    <form action="#" method="post">
+      <input type="text" name="name" placeholder="Component name">
+      <input type="number" name="price" placeholder="Price">
+
+      <div class="categories">
+        <input type="radio" name="component" value="motherboard">Motherboard
+        <input type="radio" name="component" value="ram">Ram
+      </div>
+
+      <textarea name="description" rows="2" cols="20"></textarea>
+      <button type="submit" name="button">Add new item</button>
+
+    </form>
+    <a href="{{url_for('showComponents')}}">Cancel</a>
   </body>
 </html>

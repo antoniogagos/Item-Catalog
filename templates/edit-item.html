@@ -5,6 +5,20 @@
     <title>Edit Item</title>
   </head>
   <body>
-    <h1>This page will be for editing items</h1>
+    <h1>Editing {{item.name}}</h1>
+    <form action="#" method="post">
+      <input type="text" name="name" value="{{item.name}}" placeholder="Component name">
+      <input type="number" name="price" value="{{item.price}}" placeholder="Price">
+
+      <div class="categories">
+        <input type="radio" name="component" value="motherboard" checked>Motherboard <br>
+        <input type="radio" name="component" value="ram">Ram
+      </div>
+
+      <textarea name="description" rows="8" cols="40">{{item.description}}</textarea>
+      <button type="submit" name="button">Save changes</button>
+
+    </form>
+    <a href="{{url_for('showItem',component =item.component.name, item=item.name)}}">Cancel</a>
   </body>
 </html>

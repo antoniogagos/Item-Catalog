@@ -31,32 +31,91 @@ def showComponents():
 
 @app.route('/components/<string:component>/')
 def showComponentItems(component):
-    component_item = session.query(Item).filter_by(component=component)
-    return render_template('component-items.html', component_item=component_item)
+    component = session.query(Component).filter_by(name=component).one()
+    allItems = session.query(Item).filter_by(component=component).all()
+
+    return render_template('component-items.html', allItems=allItems)
 
 
 @app.route('/components/<string:component>/<string:item>')
 def showItem(component, item):
-    return render_template('item.html')
+    item = session.query(Item).filter_by(name=item).one()
+    return render_template('item.html', item=item)
 
 
-@app.route('/components/add')
+@app.route('/components/add', methods=['GET', 'POST'])
 def addItem():
-    return render_template('add-item.html')
+    if request.method == 'POST':
+        component_name = request.form['component']
+        component = session.query(Component).filter_by(name=component_name).one()
+
+        price_item = str(request.form['price'])
+        newItem = Item(name=request.form['name'], price=price_item,
+                       description=request.form['description'], component=component)
+        session.add(newItem)
+        session.commit()
+
+        return redirect(url_for('showComponentItems', component=request.form['component']))
+    else:
+        return render_template('add-item.html')
 
 
-@app.route('/components/<string:component>/<string:item>/edit')
+@app.route('/components/<string:component>/<string:item>/edit', methods=['GET', 'POST'])
 def editItem(component, item):
-    return render_template('edit-item.html')
+
+    if request.method == 'POST':
+        item = session.query(Item).filter_by(name=item).one()
+
+        component_name = request.form['component']
+        component = session.query(Component).filter_by(name=component_name).one()
+
+        print(item.name)
+        item.name = request.form['name']
+        item.price = str(request.form['price'])
+        item.description = request.form['description']
+        item.component = component
+        session.commit()
+
+        return redirect(url_for('showComponentItems', component=request.form['component']))
+    else:
+        item = session.query(Item).filter_by(name=item).one()
+
+        return render_template('edit-item.html', item=item)
 
 
-@app.route('/components/<string:component>/<string:item>/delete')
+@app.route('/components/<string:component>/<string:item>/delete', methods=['GET', 'POST'])
 def deleteItem(component, item):
-    return render_template('delete-item.html')
+    if request.method == 'POST':
+        item = session.query(Item).filter_by(name=item).one()
+
+        item_component = item.component.name
+        session.delete(item)
+        session.commit()
+
+        return redirect(url_for('showComponentItems', component=item_component))
+    else:
+        item = session.query(Item).filter_by(name=item).one()
+        return render_template('delete-item.html', item=item)
 
 
-##@app.route('/components.json')
-##def showJSON()
+@app.route('/components/JSON')
+def componentsJSON():
+    components = session.query(Component).all()
+    return jsonify(components=[c.serialize for c in components])
+
+
+@app.route('/components/<string:component>/JSON')
+def componentItemsJSON(component):
+    component = session.query(Component).filter_by(name=component).one()
+    items = session.query(Item).filter_by(component=component).all()
+    print(items)
+    return jsonify(items=[i.serialize for i in items])
+
+
+@app.route('/components/<string:component>/<string:item>/JSON')
+def itemJSON(component, item):
+    item = session.query(Item).filter_by(name=item).one()
+    return jsonify(item=item.serialize)
 
 
 if __name__ == '__main__':

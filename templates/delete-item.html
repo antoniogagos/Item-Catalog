@@ -6,5 +6,12 @@
   </head>
   <body>
     <h1>This page will be for deleting items</h1>
+    <h2>You are about to delete '{{item.name}}' {{item.component.name}} component. Are you sure?</h2>
+    <form action="#" method="post">
+      <button type="submit" name="button">Delete item</button>
+    </form>
+    <a href="{{url_for('showItem',component =item.component.name, item=item.name)}}">
+      <h2>Cancel</h2>
+    </a>
   </body>
 </html>

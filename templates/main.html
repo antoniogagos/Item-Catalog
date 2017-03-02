@@ -6,9 +6,12 @@
   </head>
   <body>
     <h1>This page will show all PC components</h1>
+    <a href="{{url_for('addItem')}}">
+      <input type="button" name="" value="Add Item">
+    </a>
     {% for component in components %}
       <a href="{{url_for('showComponentItems', component=component.name)}}">
-      <h1>{{component.name}}</h1>
+        <h1>{{component.name}}</h1>
       </a>
     {% endfor %}
   </body>

@@ -5,6 +5,20 @@
     <title>Item</title>
   </head>
   <body>
-    <h1>This page will show a specific component</h1>
+    <h1>This page will show a specific item</h1>
+    <div class="item-card">
+      <h2>{{item.name}}</h1>
+      <h2>{{item.price}}€</h2>
+      <h2>{{item.description}}</h2>
+      <div class="item-btns">
+        <a href="{{url_for('editItem', component=item.component.name, item=item.name)}}">
+          <h2>Edit</h2>
+        </a>
+
+        <a href="{{url_for('deleteItem', component=item.component.name, item=item.name)}}">
+          <h2>Delete</h2>
+        </a>
+      </div>
+    </div>
   </body>
 </html>

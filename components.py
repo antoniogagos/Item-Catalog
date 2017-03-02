@@ -24,16 +24,25 @@ session.add(User1)
 session.commit()
 
 
-motherboard = Component(id=1, name="motherboard", image="https://image.flaticon.com/icons/svg/141/141009.svg")
+motherboard = Component(user_id=1, name="motherboard", image="https://image.flaticon.com/icons/svg/141/141009.svg")
 session.add(motherboard)
 session.commit()
 
-ram = Component(id=2, name="ram", image="https://image.flaticon.com/icons/svg/141/141009.svg")
+ram = Component(user_id=1, name="ram", image="https://image.flaticon.com/icons/svg/141/141009.svg")
 session.add(ram)
 session.commit()
 
-kingston = Item(id=1, name="kingston", description="New kingston Ram 64GB the future", price="46.58", component=ram)
+
+kingston = Item(user_id=1, name="kingston", description="New kingston Ram 64GB the future", price="46.58", component=ram)
 session.add(kingston)
+session.commit()
+
+msi = Item(user_id=1, name="msi", description="MSI 970 AM3+", price="95.00", component=motherboard)
+session.add(msi)
+session.commit()
+
+kingston2 = Item(user_id=1, name="kingston2", description="New kingston Ram 128GB the future", price="85.28", component=ram)
+session.add(kingston2)
 session.commit()
 
 print "added items!"

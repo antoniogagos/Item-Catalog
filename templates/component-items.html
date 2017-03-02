@@ -6,8 +6,11 @@
   </head>
   <body>
     <h1>This page will show all items for a specific component</h1>
-    {% for item in component_item %}
-      <h1>{{item.name}}</h1>
-    {% endfor%}
+    {% for item in allItems %}
+      <a href="{{url_for('showItem', component = item.component.name, item=item.name)}}">
+        <h1>{{item.name}}</h1>
+      </a>
+      <br>
+    {% endfor %}
   </body>
 </html>
