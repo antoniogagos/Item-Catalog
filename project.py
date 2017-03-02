@@ -31,7 +31,7 @@ def showComponents():
 
 @app.route('/components/<string:component>/')
 def showComponentItems(component):
-    component_item = session.query(Item)
+    component_item = session.query(Item).filter_by(component=component)
     return render_template('component-items.html', component_item=component_item)
 
 
