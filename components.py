@@ -24,25 +24,28 @@ session.add(User1)
 session.commit()
 
 
-motherboard = Component(user_id=1, name="motherboard", image="https://image.flaticon.com/icons/svg/141/141009.svg")
+motherboard = Component(user_id=1, name="Motherboard", image="static/images/motherboard.svg")
 session.add(motherboard)
 session.commit()
 
-ram = Component(user_id=1, name="ram", image="https://image.flaticon.com/icons/svg/141/141009.svg")
-session.add(ram)
+memory = Component(user_id=1, name="Memory", image="static/images/ram_memory.svg")
+session.add(memory)
 session.commit()
 
-
-kingston = Item(user_id=1, name="kingston", description="New kingston Ram 64GB the future", price="46.58", component=ram)
-session.add(kingston)
+power_supply = Component(user_id=1, name="Power Supply", image="static/images/power_supply.svg")
+session.add(power_supply)
 session.commit()
 
-msi = Item(user_id=1, name="msi", description="MSI 970 AM3+", price="95.00", component=motherboard)
-session.add(msi)
+processor = Component(user_id=1, name="Processor", image="static/images/processor.svg")
+session.add(processor)
 session.commit()
 
-kingston2 = Item(user_id=1, name="kingston2", description="New kingston Ram 128GB the future", price="85.28", component=ram)
-session.add(kingston2)
+hard_drive = Component(user_id=1, name="Hard Drive", image="static/images/hard_drive.svg")
+session.add(hard_drive)
+session.commit()
+
+graphic_card = Component(user_id=1, name="Graphic Card", image="static/images/graphic_card.svg")
+session.add(graphic_card)
 session.commit()
 
 print "added items!"
