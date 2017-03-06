@@ -1,28 +1,73 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Add Item</title>
-  </head>
-  <body>
-    <h1>This page will be for adding new items</h1>
-    <form action="#" method="post">
-      <input type="text" name="name" placeholder="Component name">
-      <input type="number" name="price" placeholder="Price">
+{% extends "base.html" %}
 
-      <div class="categories">
-        <input type="radio" name="component" value="Motherboard">Motherboard
-        <input type="radio" name="component" value="Memory">Memory
-        <input type="radio" name="component" value="Graphic Card">Graphic Card
-        <input type="radio" name="component" value="Power Supply">Power Supply
-        <input type="radio" name="component" value="Hard Drive">Hard Drive
-        <input type="radio" name="component" value="Processor">Processor
-      </div>
+  {% block content %}
+    <div class="add-item-card">
 
-      <textarea name="description" rows="2" cols="20"></textarea>
-      <button type="submit" name="button">Add new item</button>
+      <div class="add-item-text">Add New Item</div>
+      <form action="#" method="post">
+        <input class="text-input" type="text" name="name" placeholder="Component name" required="">
+        <input class="price-input" type="number" name="price" placeholder="Price" required="">
+        <div class="description">
+          <span class="description-text">Description</span>
+          <textarea class="textarea" name="description" rows="8" cols="80"></textarea>
+        </div>
 
-    </form>
-    <a href="{{url_for('showComponents')}}">Cancel</a>
-  </body>
-</html>
+
+
+        <div class="categories">
+          <div class="category-component">
+            <input class="material_radio" type="radio" name="component" value="Motherboard">
+            <div class="radio-text">Motherboard</div>
+          </div>
+
+
+          <div class="category-component">
+            <input class="material_radio" type="radio" name="component" value="Memory">
+            <div class="radio-text">Memory</div>
+          </div>
+
+          <div class="category-component">
+            <input class="material_radio" type="radio" name="component" value="Graphic Card">
+            <div class="radio-text">Graphic Card</div>
+          </div>
+
+          <div class="category-component">
+            <input class="material_radio" type="radio" name="component" value="Power Supply">
+            <div class="radio-text">Power Supply</div>
+          </div>
+
+          <div class="category-component">
+            <input class="material_radio" type="radio" name="component" value="Hard Drive">
+            <div class="radio-text">Hard Drive</div>
+          </div>
+
+          <div class="category-component">
+            <input class="material_radio" type="radio" name="component" value="Processor">
+            <div class="radio-text">Processor</div>
+          </div>
+        </div>
+
+        <div class="btns-user">
+          <button class="submit-btn" type="submit" name="button">Submit</button>
+          <div class="cancel">
+            <a href="{{url_for('showComponents')}}">
+              <svg width="22px" height="27px" viewBox="463 813 28 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+                <g id="back-arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(463.000000, 813.000000)">
+                  <g id="Capa_1" fill-rule="nonzero" fill="#BABABA">
+                    <g id="reply">
+                      <path d="M10.8888889,7.20822454 L10.8888889,0.0176240209 L0,12.6011749 L10.8888889,25.1847258 L10.8888889,17.8143603 C18.6666667,17.8143603 24.1111111,20.6906005 28,26.982376 C26.4444444,17.9941253 21.7777778,9.00587467 10.8888889,7.20822454 Z" id="Shape"></path>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+
+
+      </form>
+
+    </div>
+  {% endblock %}

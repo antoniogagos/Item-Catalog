@@ -69,7 +69,6 @@ a {
   padding: 40px;
   justify-content: center;
   margin-right: 10px;
-  margin-bottom: 30px;
 }
 
 .components a {
@@ -102,4 +101,41 @@ a {
   display: flex;
   align-self: flex-end;
   margin-left: 10px;
+}
+
+.add-item {
+  font-family: Kefa-Regular;
+  font-size: 36px;
+  color: #316B59;
+  display: flex;
+  margin-top: 30px;
+  padding: 5px 10px;
+}
+
+.add-item:hover {
+  background-color: #D8D8D8;
+  transition: 0.3s;
+}
+
+.add-text {
+  margin-left: 15px;
+}
+
+
+.add-item-card {
+  background: #E8E8E8;
+  box-shadow: 0 4px 7px 4px rgba(148,141,177,0.40);
+  width: 566px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.add-item-text {
+  /* Add New Item: */
+  font-family: Chalkboard-Bold;
+  font-size: 36px;
+  color: #FFF;
+  text-align: center;
+  padding: 25px;
+  background: #1A3A58;
 }

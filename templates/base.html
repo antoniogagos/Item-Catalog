@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PC components</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+    <link rel="stylesheet" href="/static/addCard.css">
+
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-text"><a href="/components">PC components</a></div>
+      {% if username %}
+        <div class="user-container">
+          <img class="user-picture" src="{{picture}}" alt="">
+          <a class="logout-icon" href="/gdisconnect">
+            <svg width="28px" height="24px" viewBox="1260 143 28 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="logout-(1)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(1260.000000, 143.000000)">
+                <g id="Layer_1" fill-rule="nonzero" fill="#D9D9D9">
+                  <g id="Group">
+                    <path d="M16.5148676,20.8348854 C16.1377515,20.7798535 15.8153238,21.0733567 15.8153238,21.4402357 L15.8153238,25.7205096 L1.21654582,25.7205096 L1.21654582,1.26189172 L15.8153238,1.26189172 L15.8153238,5.52382166 C15.8153238,5.82953503 16.0343055,6.10469427 16.3323829,6.14751592 C16.709499,6.20254777 17.0319267,5.90904459 17.0319267,5.54216561 L17.0319267,0.650464968 C17.0319267,0.314140127 16.7581996,0.0389808917 16.4236253,0.0389808917 L0.608301426,0.0389808917 C0.273727088,0.0389808917 0,0.314140127 0,0.650464968 L0,26.3319936 C0,26.6683185 0.273727088,26.9434777 0.608301426,26.9434777 L16.4236253,26.9434777 C16.7581996,26.9434777 17.0319267,26.6683185 17.0319267,26.3319936 L17.0319267,21.4586369 C17.0319267,21.1528662 16.812945,20.877707 16.5148676,20.8348854 Z" id="Shape"></path>
+                    <path d="M27.8045703,13.0631847 L21.7217841,6.94851592 C21.4784521,6.71617834 21.0952342,6.72225478 20.8641059,6.96072611 C20.6390224,7.19919745 20.6390224,7.57221019 20.8641059,7.81068153 L25.9067862,12.8797452 L7.31763747,12.8797452 C7.01956008,12.8797452 6.75193483,13.0876624 6.70329124,13.387242 C6.63639919,13.772465 6.93441955,14.1026561 7.30549084,14.1026561 L25.912831,14.1026561 L20.8641059,19.1717197 C20.6207739,19.4040573 20.6147291,19.795414 20.8519593,20.0338854 C21.0830876,20.2784904 21.4724073,20.2845669 21.7096375,20.0460955 C21.7157393,20.0399618 21.7217841,20.0338854 21.7217841,20.0338854 L27.8046273,13.9192166 C28.0418004,13.6930127 28.0418004,13.3016561 27.8045703,13.0631847 Z" id="Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg></a>
+          </div>
+        </div>
+      {% endif %}
+      {% if not username %}
+      <div class="login-google">
+        <div id="signInButton">
+          <span class="g-signin"
+            data-scope="openid email"
+            data-clientid="859825716539-ieoo315ek4ee8kdro5f6vhbm4phbm6hf.apps.googleusercontent.com"
+            data-redirecturi="postmessage"
+            data-accesstype="offline"
+            data-cookiepolicy="single_host_origin"
+            data-callback="signInCallback"
+
+            data-approvalprompt="force">
+          </span>
+        </div>
+        <script>
+
+        function signInCallback(authResult) {
+          if (authResult['code']) {
+            // Hide the sign-in button now that the user is authorized
+            $('#signinButton').attr('style', 'display: none');
+            // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+            $.ajax({
+              type: 'POST',
+              url: '/gconnect?state={{STATE}}',
+              processData: false,
+              data: authResult['code'],
+              contentType: 'application/octet-stream; charset=utf-8',
+              success: function(result) {
+                // Handle or verify the server response if necessary.
+                if (result) {
+                  $('#result').html('Login Successful!</br>'+ result)
+                  setTimeout(function() {
+                    window.location.href = "/components";
+                  }, 3000);
+
+                } else if (authResult['error']) {
+                  console.log('There was an error: ' + authResult['error']);
+                } else {
+                  $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+                }
+              }
+            });
+           }
+         }
+        </script>
+      </div>
+      {% endif %}
+    </div>
+
+    <div id=result></div>
+
+    <div id="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </body>
+</html>
