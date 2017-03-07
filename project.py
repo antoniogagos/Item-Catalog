@@ -52,9 +52,8 @@ def showComponents():
 def showComponentItems(component):
     component = session.query(Component).filter_by(name=component).one()
     allItems = session.query(Item).filter_by(component=component).all()
-    username = login_session.get('username')
-    print(username)
-    return render_template('component-items.html', allItems=allItems)
+
+    return render_template('component-items.html', allItems=allItems, component=component)
 
 
 @app.route('/components/<string:component>/<string:item>')
@@ -211,9 +210,9 @@ def gconnect():
     login_session['email'] = data['email']
 
     output = ''
-    output += '<h1 class="output-login">Welcome, '
+    output += '<div class="output-login">Welcome, '
     output += login_session['username']
-    output += '!</h1>'
+    output += '!</div>'
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output

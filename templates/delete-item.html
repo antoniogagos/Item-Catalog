@@ -1,17 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Delete Item</title>
-  </head>
+{% extends "base.html" %}
+
+{% block content %}
   <body>
-    <h1>This page will be for deleting items</h1>
-    <h2>You are about to delete {{item.name}} component. Are you sure?</h2>
-    <form action="#" method="post">
-      <button type="submit" name="button">Delete item</button>
-    </form>
-    <a href="{{url_for('showItem',component =item.component.name, item=item.name)}}">
-      <h2>Cancel</h2>
-    </a>
-  </body>
-</html>
+    <div class="delete-item-container">
+      <div class="">You are about to delete <span class="item-title">{{item.name}}</span> item. Are you sure?</div>
+      <form class="delete-form" action="#" method="post">
+        <a class="back-arrow" href="{{url_for('showItem',component =item.component.name, item=item.name)}}">
+          <svg width="22px" height="27px" viewBox="463 813 28 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+            <g id="back-arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(463.000000, 813.000000)">
+              <g id="Capa_1" fill-rule="nonzero" fill="#BABABA">
+                <g id="reply">
+                  <path d="M10.8888889,7.20822454 L10.8888889,0.0176240209 L0,12.6011749 L10.8888889,25.1847258 L10.8888889,17.8143603 C18.6666667,17.8143603 24.1111111,20.6906005 28,26.982376 C26.4444444,17.9941253 21.7777778,9.00587467 10.8888889,7.20822454 Z" id="Shape"></path>
+                </g>
+              </g>
+            </g>
+          </svg>
+        </a>
+        <button class="delete-btn" type="submit" name="button">DELETE</button>
+      </form>
+
+    </div>
+{% endblock %}
