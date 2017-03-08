@@ -11,6 +11,6 @@ This is a python module that creates a website and JSON API for a list of items 
 
   * Install Vagrant.
   * Then, install the dependency libraries
-  * Seeding the database: <code>python database_setup.py</code>
+  * Seeding the database: <code>python components.py</code>
   * Run <code>python project.py</code>
   * Then access the site going to <code>localhost:5000</code>
