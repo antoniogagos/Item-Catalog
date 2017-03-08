@@ -42,6 +42,7 @@ class Item(Base):
     __tablename__ = 'item'
 
     name = Column(String(80), nullable = False)
+    email = Column(String(80), nullable = False)
     id = Column(Integer, primary_key = True)
     description = Column(String(250))
     price = Column(String(8))

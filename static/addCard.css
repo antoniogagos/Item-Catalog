@@ -1,3 +1,8 @@
+body {
+  font-family: 'Nixie One', cursive;
+}
+
+
 h1, input::-webkit-input-placeholder, button {
   font-family: 'roboto', sans-serif;
   -webkit-transition: all 0.3s ease-in-out;
@@ -30,11 +35,11 @@ input {
   letter-spacing: 1px;
   font-size: 15px;
   padding: 10px 0;
-  border-bottom: solid 2px #1abc9c;
+  border-bottom: solid 2px #316b59;
   -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
   transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #1abc9c 4%);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 96%, #316b59 4%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 96%, #316b59 4%);
   background-position: -300px 0;
   background-size: 300px 100%;
   background-repeat: no-repeat;
@@ -58,7 +63,7 @@ input:focus, input:valid {
 }
 
 input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
-  color: #1abc9c;
+  color: #316b59;
   font-size: 11px;
   -webkit-transform: translateY(-20px);
           transform: translateY(-20px);
@@ -67,7 +72,7 @@ input:focus::-webkit-input-placeholder, input:valid::-webkit-input-placeholder {
 
 button {
   border: none;
-  background: #1abc9c;
+  background: #316B59;
   cursor: pointer;
   border-radius: 3px;
   padding: 6px;
@@ -94,7 +99,7 @@ button:hover {
     margin-top: 30px;
 }
 textarea {
-  width: 476px;
+  width: 457px;
   height: 70px;
   max-width: 476px;
 }
@@ -109,8 +114,8 @@ textarea {
 .category-component > .radio-text {
   margin-left: 10px;
   margin-top: 3px;
-  font-size: 14px;
-  color: #b9b9cc;
+  font-size: 15px;
+  color: #316b59;
 }
 
 .categories > .category-component {
@@ -123,7 +128,7 @@ textarea {
 .description-text {
   display: inline-block;
   margin-bottom: 15px;
-  color: #75757f;
+  color: #316b59;
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -136,10 +141,11 @@ textarea {
   margin-top: 40px;
   order: 2;
   font-size: 15px;
+  letter-spacing: 2px;
 }
 
 .textarea {
-  color: #929298;
+  color: #316b59;
   border: none;
   font-size: 18px;
   padding: 10px;
@@ -162,7 +168,7 @@ textarea {
 .category-component {
   padding: 10px 17px;
   background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  box-shadow: 0 2px 5px rgba(0,0,0,.1);
   width: 500px;
   margin: auto;
   margin-top: 50px;
@@ -211,5 +217,5 @@ textarea {
 }
 
 .material_radio:checked:before{
-  background-color:#e51c23;
+  background-color: #316b59;
 }

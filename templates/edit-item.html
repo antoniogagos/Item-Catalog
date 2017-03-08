@@ -13,36 +13,12 @@
           </div>
 
           <div class="categories">
+            {% for item in componentList %}
             <div class="category-component">
-              <input class="material_radio" type="radio" name="component" value="Motherboard">
-              <div class="radio-text">Motherboard</div>
+              <input class="material_radio" type="radio" name="component" value="{{item}}">
+              <div class="radio-text">{{item}}</div>
             </div>
-
-
-            <div class="category-component">
-              <input class="material_radio" type="radio" name="component" value="Memory">
-              <div class="radio-text">Memory</div>
-            </div>
-
-            <div class="category-component">
-              <input class="material_radio" type="radio" name="component" value="Graphic Card">
-              <div class="radio-text">Graphic Card</div>
-            </div>
-
-            <div class="category-component">
-              <input class="material_radio" type="radio" name="component" value="Power Supply">
-              <div class="radio-text">Power Supply</div>
-            </div>
-
-            <div class="category-component">
-              <input class="material_radio" type="radio" name="component" value="Hard Drive" checked>
-              <div class="radio-text">Hard Drive</div>
-            </div>
-
-            <div class="category-component">
-              <input class="material_radio" type="radio" name="component" value="Processor">
-              <div class="radio-text">Processor</div>
-            </div>
+            {% endfor %}
           </div>
 
           <div class="btns-user">
@@ -50,7 +26,6 @@
             <div class="cancel">
               <a href="{{url_for('showItem', component=item.component.name, item=item.name)}}">
                 <svg width="22px" height="27px" viewBox="463 813 28 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-
                   <g id="back-arrow" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(463.000000, 813.000000)">
                     <g id="Capa_1" fill-rule="nonzero" fill="#BABABA">
                       <g id="reply">

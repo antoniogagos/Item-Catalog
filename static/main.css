@@ -8,7 +8,7 @@ body {
   padding: 0;
   background-color: #19334E;
   color: white;
-  font-family: sans-serif;
+  font-family: 'PT Mono', monospace;
   max-width: 1440px;
   margin: 0 auto;
 }
@@ -34,6 +34,8 @@ a {
 }
 
 .header-text {
+  font-family: 'PT Mono', monospace;
+  color: #FFFFFF;
   width: 100%;
   margin-left: 100px;
   font-size: 48px;
@@ -44,6 +46,8 @@ a {
   margin-top: 20px;
   margin-bottom: 10px;
   font-size: 25px;
+  color: #FFFFFF;
+  letter-spacing: 1px;
 }
 
 .item-image {
@@ -86,7 +90,7 @@ a {
 }
 
 .user-picture {
-  width: 100px;
+  width: 80px;
   max-width:100%;
   border-radius: 50%;
 }
@@ -94,7 +98,6 @@ a {
 .user-container {
   display: inherit;
   height: 80px;
-  margin-right: 20px;
 }
 
 .logout-icon {
@@ -104,38 +107,164 @@ a {
 }
 
 .add-item {
-  font-family: Kefa-Regular;
-  font-size: 36px;
+  font-family: 'PT Mono', monospace;
+  font-size: 30px;
   color: #316B59;
   display: flex;
   margin-top: 30px;
   padding: 5px 10px;
+  border-radius: 2px 2px 2px 2px;
+  letter-spacing: 1px;
+  border: 2px solid #316553;
 }
 
 .add-item:hover {
-  background-color: #D8D8D8;
-  transition: 0.3s;
+  background-color: #f3f3f3;
+  transition: 0.2s;
 }
 
 .add-text {
   margin-left: 15px;
 }
 
-
 .add-item-card {
   background: #E8E8E8;
-  box-shadow: 0 4px 7px 4px rgba(148,141,177,0.40);
+  box-shadow: 0 4px 7px 4px rgba(35, 35, 35, 0.2);
   width: 566px;
   margin: 0 auto;
   margin-top: 20px;
 }
 
 .add-item-text {
-  /* Add New Item: */
-  font-family: Chalkboard-Bold;
+  font-family: 'Nixie One', cursive;
+  font-weight: bold;
   font-size: 36px;
   color: #FFF;
   text-align: center;
   padding: 25px;
+  letter-spacing: 2px;
   background: #1A3A58;
+}
+
+.component-name {
+  text-align: center;
+  font-family: 'Nixie One', cursive;
+  font-size: 35px;
+  color: #f1f1f1;
+}
+
+.components-block {
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 40px;
+  box-shadow: 0 4px 7px 4px rgba(35, 35, 35, 0.3);
+}
+
+.component-card {
+  padding: 25px;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.component-card:last-child {
+  border-bottom: none;
+}
+
+.component-card:hover {
+  background: #16212b;
+  box-shadow: 0 4px 7px 4px rgb(40, 56, 74);
+}
+
+.item-name {
+  font-family: 'Nixie One', cursive;
+  font-size: 28px;
+  color: #f5a235;
+}
+
+.card {
+  width: 700px;
+  margin: 0 auto;
+  background: #324f6d;
+  color: #16212b;
+  padding: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 7px 4px rgba(35, 35, 35, 0.3);
+}
+
+.title {
+  text-align: center;
+  font-family: 'Nixie One', cursive;
+  font-size: 30px;
+  color: white;
+}
+
+.item-btns {
+  text-align: right;
+}
+
+.description {
+  padding: 10px;
+}
+
+.price {
+  padding: 10px;
+}
+
+.plus-icon {
+  margin-top: 5px;
+}
+
+.info {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  color: #f5a235;
+}
+
+.delete-item-container {
+  display: flex;
+  width: 750px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 130px;
+  font-size: 25px;
+}
+
+.delete-btn {
+  padding: 15px;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.delete-form {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.back-arrow {
+  display: flex;
+  align-items: flex-end;
+}
+
+.item-title {
+  color: #316b59;
+}
+
+.item-btns > a {
+  margin-right: 15px;
+}
+
+.text-warning {
+  text-align: center;
+  font-size: 22px;
+  color: #f5a235;
+  margin-top: 100px;
+}
+
+.empty-add {
+  width: 15%;
+  min-width: 200px;
+  margin: 0 auto;
+  margin-top: 60px;
+  padding: 10px 20px;
 }

@@ -40,6 +40,7 @@ def showLogin():
 def showComponents():
     username = login_session.get('username')
     picture = login_session.get('picture')
+    user_email = login_session.get('email')
     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
                     for x in xrange(32))
     login_session['state'] = state
@@ -52,14 +53,30 @@ def showComponents():
 def showComponentItems(component):
     component = session.query(Component).filter_by(name=component).one()
     allItems = session.query(Item).filter_by(component=component).all()
+    username = login_session.get('username')
+    picture = login_session.get('picture')
+    user_email = login_session.get('email')
 
-    return render_template('component-items.html', allItems=allItems, component=component)
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in xrange(32))
+    login_session['state'] = state
+    return render_template('component-items.html', allItems=allItems, component=component,
+                            username=username, picture=picture, STATE=state)
 
 
 @app.route('/components/<string:component>/<string:item>')
 def showItem(component, item):
     item = session.query(Item).filter_by(name=item).one()
-    return render_template('item.html', item=item)
+
+    username = login_session.get('username')
+    picture = login_session.get('picture')
+    user_email = login_session.get('email')
+
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in xrange(32))
+    login_session['state'] = state
+    return render_template('item.html', item=item, username=username,
+                            picture=picture, STATE=state)
 
 
 @app.route('/components/add', methods=['GET', 'POST'])
@@ -67,54 +84,87 @@ def addItem():
     if request.method == 'POST':
         component_name = request.form['component']
         component = session.query(Component).filter_by(name=component_name).one()
+        user_email = login_session.get('email')
 
         price_item = str(request.form['price'])
         newItem = Item(name=request.form['name'], price=price_item,
-                       description=request.form['description'], component=component)
+                       description=request.form['description'], component=component, email=user_email)
         session.add(newItem)
         session.commit()
 
         return redirect(url_for('showComponentItems', component=request.form['component']))
     else:
-        return render_template('add-item.html')
+        username = login_session.get('username')
+        picture = login_session.get('picture')
+        user_email = login_session.get('email')
+
+        state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                        for x in xrange(32))
+        login_session['state'] = state
+        return render_template('add-item.html', username=username,
+                                picture=picture, STATE=state)
 
 
 @app.route('/components/<string:component>/<string:item>/edit', methods=['GET', 'POST'])
 def editItem(component, item):
+    user_email = login_session.get('email')
+    item = session.query(Item).filter_by(name=item).one()
+    if user_email == item.email:
+        if request.method == 'POST':
+            component_name = request.form['component']
+            component = session.query(Component).filter_by(name=component_name).one()
 
-    if request.method == 'POST':
-        item = session.query(Item).filter_by(name=item).one()
+            item.name = request.form['name']
+            item.price = str(request.form['price'])
+            item.description = request.form['description']
+            item.component = component
+            session.commit()
 
-        component_name = request.form['component']
-        component = session.query(Component).filter_by(name=component_name).one()
+            return redirect(url_for('showComponentItems', component=request.form['component']))
+        else:
+            username = login_session.get('username')
+            picture = login_session.get('picture')
+            user_email = login_session.get('email')
 
-        print(item.name)
-        item.name = request.form['name']
-        item.price = str(request.form['price'])
-        item.description = request.form['description']
-        item.component = component
-        session.commit()
+            state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                            for x in xrange(32))
+            login_session['state'] = state
 
-        return redirect(url_for('showComponentItems', component=request.form['component']))
+            components = session.query(Component).all()
+            componentList = []
+            for c in components:
+                componentList.append(c.name)
+
+            print(componentList)
+            return render_template('edit-item.html', item=item, componentList=componentList,
+                                    username=username, picture=picture, STATE=state)
     else:
-        item = session.query(Item).filter_by(name=item).one()
-
-        return render_template('edit-item.html', item=item)
+        return redirect(url_for('showComponents'))
 
 
 @app.route('/components/<string:component>/<string:item>/delete', methods=['GET', 'POST'])
 def deleteItem(component, item):
-    if request.method == 'POST':
-        item = session.query(Item).filter_by(name=item).one()
+    user_email = login_session.get('email')
+    item = session.query(Item).filter_by(name=item).one()
+    if user_email == item.email:
+        if request.method == 'POST':
+            item_component = item.component.name
+            session.delete(item)
+            session.commit()
 
-        item_component = item.component.name
-        session.delete(item)
-        session.commit()
+            return redirect(url_for('showComponentItems', component=item_component))
+        else:
+            username = login_session.get('username')
+            picture = login_session.get('picture')
+            user_email = login_session.get('email')
 
-        return redirect(url_for('showComponentItems', component=item_component))
+            state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                            for x in xrange(32))
+            login_session['state'] = state
+            return render_template('delete-item.html', item=item, username=username,
+                                    picture=picture, STATE=state)
     else:
-        item = session.query(Item).filter_by(name=item).one()
-        return render_template('delete-item.html', item=item)
+        return redirect(url_for('showComponents'))
 
 
 @app.route('/components/JSON')
@@ -249,21 +299,6 @@ def gdisconnect():
         response = make_response(json.dumps('Failed to revoke token for given user.'), 400)
         response.headers['Content-Type'] = 'application/json'
         return response
-
-
-# User Helper Functions
-def createUser(login_session):
-    newUser = User(name=login_session['username'], email=login_session[
-                   'email'], picture=login_session['picture'])
-    session.add(newUser)
-    session.commit()
-    user = session.query(User).filter_by(email=login_session['email']).one()
-    return user.id
-
-
-def getUserInfo(user_id):
-    user = session.query(User).filter_by(id=user_id).one()
-    return user
 
 
 def getUserID(email):
