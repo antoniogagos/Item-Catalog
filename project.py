@@ -12,10 +12,13 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 import httplib2
 import json
+import os
 from flask import make_response
 import requests
 
 app = Flask(__name__)
+
+dir_path = os.path.dirname(os.path.realpath(_file_))
 
 CLIENT_ID = json.loads(open(os.path.join(dir_path, 'client_secrets.json'), 'r').read())['web']['client_id']
 APPLICATION_NAME = 'pc-components-catalog'
