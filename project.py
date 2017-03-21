@@ -18,7 +18,7 @@ import requests
 
 app = Flask(__name__)
 
-dir_path = os.path.dirname(os.path.realpath(_file_))
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 CLIENT_ID = json.loads(open(os.path.join(dir_path, 'client_secrets.json'), 'r').read())['web']['client_id']
 APPLICATION_NAME = 'pc-components-catalog'
