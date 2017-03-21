@@ -66,7 +66,8 @@ class Item(Base):
         }
 
 
-engine = create_engine(
-'sqlite:///pccomponents.db')
+engine = create_engine('postgresql+psycopg2://grader:udacity@localhost/catalog')
+if not database_exists(engine.url):
+    create_database(engine.url)
 
 Base.metadata.create_all(engine)
