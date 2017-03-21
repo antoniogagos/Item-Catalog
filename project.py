@@ -25,7 +25,7 @@ APPLICATION_NAME = 'pc-components-catalog'
 
 # Connect to Database and create database session
 
-engine = create_engine('sqlite:///pccomponents.db')
+engine = create_engine('postgresql+psycopg2://grader:udacity@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
