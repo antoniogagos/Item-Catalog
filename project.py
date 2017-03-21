@@ -17,7 +17,7 @@ import requests
 
 app = Flask(__name__)
 
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+CLIENT_ID = json.loads(open(os.path.join(dir_path, 'client_secrets.json'), 'r').read())['web']['client_id']
 APPLICATION_NAME = 'pc-components-catalog'
 
 # Connect to Database and create database session
